@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>form</title>
+	<script>
+		function multi(){
+			a = parseInt(prompt('111', 0));
+			b = parseInt(prompt('222', 0));
+			document.forms['form']['result'].value = a * b;
+		}
+	</script>
+</head>
+<body>
+	<form action="" method="post" id="form1" name="form" novalidate="true">
+		<label for="">Mail:</label>
+		<input type="email" name="email">
+		<br>
+		<lable>Url:</lable>
+		<input type="url">
+		<br>
+		<label for="">number:</label>
+		<input type="number" min="1" max="5" step="4">
+		<br>
+		<label for="">Range:</label>
+		<input type="range" min="1" max="20">
+		<br>
+		<label for="">Date:</label>
+		<input type="date" formaction="1.asp" pattern="[0-9]{6}">
+		<br>
+		<label for="">Search:</label>
+		<input type="search" autocomplete="on" autofocus="autofocus" placeholder="111">
+		<br>
+		<label for="">Tel:</label>
+		<input type="tel" height="30" width="1000" list="tel-list">
+		<datalist id="tel-list">
+			<option value="1" label="1111"></option>
+			<option value="2" label="1111"></option>
+			<option value="3" label="1111"></option>
+			<option value="4" label="1111"></option>
+			<option value="5" label="1111"></option>
+		</datalist>
+		<br>
+		<label for="">Color:</label>
+		<input type="color">
+		<br>
+		<lable>File:</lable>
+		<input type="file" multiple="multiple">
+		<br>
+		<label for="">选择安全强度：</label>
+		<keygen name="security">
+		<br>
+		<label for="">乘积：</label>
+		<output name="result"></output>
+		<br>
+		<input type="submit">
+	</form>
+	<input type="text" form="form1" required="required">
+</body>
+</html>

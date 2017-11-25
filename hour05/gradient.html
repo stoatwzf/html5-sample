@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>gradient</title>
+</head>
+<body>
+	<canvas id="canvas" width="700" height="300" style="border:1px solid #ccc"></canvas>
+	<script>
+		var d = document.getElementById('canvas').getContext('2d'),
+			l = d.createLinearGradient(0, 0, 0, 200),
+			r = d.createRadialGradient(250, 10, 20, 250, 10, 300);
+
+		l.addColorStop(0, '#ff0000');
+		l.addColorStop(1/7, '#ff9900');
+		l.addColorStop(2/7, '#ffff00');
+		l.addColorStop(3/7, '#00ff00');
+		l.addColorStop(4/7, '#00ffff');
+		l.addColorStop(5/7, '#0000ff');
+		l.addColorStop(6/7, '#ff00ff');
+		l.addColorStop(1, '#ff0000');
+		d.fillStyle = l;
+		d.fillRect(10, 10, 200, 200);
+		r.addColorStop(0, '#fff');
+		r.addColorStop(0.75, '#333');
+		r.addColorStop(1, '#000');
+		d.fillStyle = r;
+		d.fillRect(220, 10, 410, 210);
+	</script>
+</body>
+</html>

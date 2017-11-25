@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>counter</title>
+</head>
+<body>
+	<script>
+		if (localStorage.pageCount){
+			localStorage.pageCount = +localStorage.pageCount + 1
+		} else {
+			localStorage.pageCount = 1;
+		}
+		document.write(localStorage.pageCount);
+		if (sessionStorage.pageCount){
+			sessionStorage.pageCount = +sessionStorage.pageCount + 1;
+		} else {
+			sessionStorage.pageCount = 1;
+		}
+		document.write('<br>');
+		document.write(sessionStorage.pageCount);
+	</script>
+</body>
+</html>

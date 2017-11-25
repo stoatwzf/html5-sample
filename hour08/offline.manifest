@@ -1,0 +1,17 @@
+CACHE MANIFEST
+#This is a comment
+
+CACHE:
+index.html
+style.css
+image.jpg
+image-med.jpg
+image-small.jpg
+notre-dame.jpg
+
+NETWORK:
+search.php
+login.php
+
+FALLBACK:
+/api offline.html

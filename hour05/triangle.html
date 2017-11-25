@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>triangle</title>
+</head>
+<body>
+	<canvas id="canvas" width="500" height="500" style="border:1px solid"></canvas>
+	<script>
+		var c = document.getElementById('canvas'),
+			d = c.getContext('2d');
+
+		d.fillstyle = '#ccc';
+		d.stokeStyle = 'red';
+		d.moveTo(25, 25);
+		d.lineTo(150, 25);
+		d.lineTo(25, 150);
+		d.closePath();
+		d.stroke();
+	</script>
+</body>
+</html>

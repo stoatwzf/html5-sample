@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>pattern</title>
+</head>
+<body>
+	<canvas id="canvas" width="700" height="300" style="border:1px solid #ccc"></canvas>
+	<script>
+		var d = document.getElementById('canvas').getContext('2d'),
+			i = new Image();
+
+		i.src = 'images/naruto-512.png';
+		i.onload = function (){
+			var p = d.createPattern(i, 'repeat');
+
+			d.fillStyle = p;
+			d.fillRect(0, 0, 700, 300);
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>scale</title>
+</head>
+<body>
+	<canvas id="canvas" width="700" height="300" style="border:1px solid #ccc"></canvas>
+	<script>
+		window.onload = draw;
+		function draw(){
+			var d = document.getElementById('canvas').getContext('2d');
+
+			d.translate(200, 20);
+			for (var i = 1; i < 80; i += 1){
+				d.save();
+				d.translate(30, 30);
+				d.scale(0.95, 0.95);
+				d.rotate(Math.PI / 12);
+				d.beginPath();
+				d.fillStyle = 'red';
+				d.globalAlpha = '0.4';
+				d.arc(0, 0, 50, 0, Math.PI * 2, true);
+				d.closePath();
+				d.fill();
+			}
+		}
+	</script>
+</body>
+</html>

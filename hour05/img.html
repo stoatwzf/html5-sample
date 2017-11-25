@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>image</title>
+</head>
+<body>
+	<canvas id="canvas" width="700" height="300" style="border:1px solid #ccc"></canvas>
+	<script>
+		var d = document.getElementById('canvas').getContext('2d'),
+			m = new Image();
+
+		m.onload = function (){
+			d.drawImage(m, 10, 10, 120, 120, 0, 0, 110, 110);
+			d.font = 'italic 60px Arial Black';
+			d.shadowOffsetX = 3;
+			d.shadowOffsetY = 3;
+			d.shadowBlur = 2;
+			d.shadowColor = 'rgba(0, 0, 0, 0.7)';
+			d.fillStyle = 'white';
+			d.fillText('COOL', 50, 165);
+		}
+		m.src = 'images/lalai.jpeg';
+	</script>
+</body>
+</html>

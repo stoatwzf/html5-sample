@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>translate</title>
+</head>
+<body>
+	<canvas id="canvas" width="700" height="300" style="border:1px solid #ccc"></canvas>
+	<script>
+		window.onload = function (){
+			draw();
+		}
+		function draw(){
+			var c = document.getElementById('canvas'),
+				d = c.getContext('2d');
+
+			d.translate(80, 80);
+			for (var i = 1; i < 10; i += 1){
+				d.save();
+				d.translate(60 * i, 0);
+				drawTop(d, 'rgb(' + 30 * i + ',' + (255 - 30 * i) + ',255');
+				drawGrip(d);
+				d.restore();
+			}
+		}
+		function drawTop(d, f){
+			d.fillStyle = f;
+			d.beginPath();
+			d.arc(0, 0, 30, 0, Math.PI, true);
+			d.fill();
+		}
+		function drawGrip(d){			
+			d.fillStyle = 'blue';
+			d.fillRect(-1.5, 0, 1.5, 40);
+			d.beginPath();
+			d.strokeStyle = 'blue';
+			d.arc(-5, 40, 4, Math.PI, Math.PI * 2, true);
+			d.stroke();
+		}
+
+	</script>
+</body>
+</html>

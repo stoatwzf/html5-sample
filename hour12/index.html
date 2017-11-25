@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>selector</title>
+	<style>
+		section p[class^=foo]:last-of-type {
+			color: red;
+		}
+		form input:not(:checked) {
+			border: 3px solid #ccc;
+			margin-left: 100px;
+		}
+		#red:target {
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<section>
+		<div class="foo bar baz">hello world</div>
+		<div class="foo bar" name="foo-bar">form name</div>
+		<p class="foo">ppppppp</p>
+		<p class="foo" name="foo">ppppppp</p>
+		<div class="foo bar" name="foo-bar">form name</div>
+	</section>
+	<form action="">
+		<label for="name">Name</label>
+		<input type="text" id="name">
+		<input type="button" disabled="disabled" value="click"><br>
+		<input type="checkbox" class="check">
+		<input type="checkbox" checked="checked">
+	</form>
+	<div id="red">red</div>
+</body>
+</html>

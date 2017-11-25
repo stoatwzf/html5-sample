@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>control video</title>
+</head>
+<body>
+	<video id="movies" autoplay oncanplay="startVideo()" onended="stopTimeline()" width="400px" height="300px">
+		<source src="public/video.mp4">
+		不支持video标签
+	</video>
+	<canvas id="timeline" width="400px" height="300px">不支持canvas标签</canvas>
+	<script>
+		var a = 5000,
+			b = 100,
+			c = 75,
+			d = 4,
+			e = 4,
+			f = d * e,
+			g = 0,
+			h,
+			i = false;
+
+		function startVideo(){
+			if (i){
+				return;
+			}
+			i = true;
+			updateFrame();
+			h = setInterval(updateFrame, a);
+
+			var o = document.getElementById('timeline');
+
+			o.onclick = function (evt){
+				var p = evt.layerX - o.offsetLeft,
+					q = evt.layerY - o.offsetTop,
+					r = Math.floor(q / c) * d;
+
+				r += Math.floor(p / b);
+
+				var s = (Math.floor(g / f) * f) + r;
+
+				if (r > g % 16){
+					s -= f;
+				}
+				if (s < 0){
+					return;
+				}
+
+				var t = document.getElementById('movies');
+
+				t.currentTime = s * a / 1000;
+				g = s;
+			}
+		}
+		function updateFrame(){
+			var j = document.getElementById('movies'),
+				k = document.getElementById('timeline').getContext('2d'),
+				l = g % f,
+				m = (l % e) * b,
+				n = (Math.floor(l / d)) * c;
+
+			k.drawImage(j, m, n, b, c);
+			g += 1;
+		}
+		function stopTimeline(){
+			clearInterval(h);
+		}
+	</script>
+</body>
+</html>

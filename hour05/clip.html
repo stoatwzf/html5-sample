@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>clip</title>
+</head>
+<body>
+	<canvas id="canvas" width="700" height="300" style="border:1px solid #ccc"></canvas>
+	<script>
+		var d = document.getElementById('canvas').getContext('2d');
+
+		d.fillStyle = 'black';
+		d.fillRect(0, 0, 300, 300);
+		d.beginPath();
+		d.arc(150, 150, 130, 0, Math.PI * 2, true);
+		d.clip();
+		d.translate(200, 20);
+		for (var i = 1; i < 90; i += 1){
+			d.save();
+			d.transform(0.95, 0, 0, 0.95, 30, 30);
+			d.rotate(Math.PI / 12);
+			d.beginPath();
+			d.fillStyle = 'red';
+			d.globalAlpha = 0.4;
+			d.arc(0, 0, 50, Math.PI * 2, true);
+			d.closePath();
+			d.fill();
+		}
+	</script>
+</body>
+</html>

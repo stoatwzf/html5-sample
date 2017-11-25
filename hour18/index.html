@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>box sizing</title>
+	<style>
+		.size {
+			width: 200px;
+			height: 200px;
+			background: rgba(0, 0, 0, .5);
+			resize: both;
+			overflow: auto;
+			outline: thick solid red;
+			outline-offset: 4px;
+			border: 1px solid blue;
+		}
+		a:nth-last-child(5) {
+			-webkit-nav-index: 1;
+		}
+		a:nth-last-child(4) {
+			-webkit-nav-index: 4;
+		}
+		a:nth-last-child(3) {
+			-webkit-nav-index: 3;
+		}
+		a:nth-last-child(2) {
+			-webkit-nav-index: 2;
+		}
+		a:nth-last-child(1) {
+			-webkit-nav-index: 5;
+		}
+		p:empty {
+			content: url(../hour11/public/bg.jpg);
+		}
+		p:not(:empty) {
+			color: red;
+		}
+		p:nth-last-of-type(2) {
+			color: initial;
+		}
+		@font-face {
+			font-family: 'helo',
+			src: url(*.eot);
+		}
+		@media screen and (min-width: 600px) and (max-width: 1200px) {
+			.one {
+				color: red;
+			}
+		}
+		#speech-sample {
+			voice-family: male;
+			border: 1px solid #666;
+			padding: 5px;
+			font-size: 14px;
+		}
+		span:nth-child(1) {
+			voice-balance: left;
+		}
+		span:nth-child(1) {
+			cue-after: url(./audio.mp3);
+		}
+		.ref {
+			color: orange;
+			font-size: 50px;
+			-webkit-box-reflect: below 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="size"></div>
+	<menu>
+		<a href="">link1</a>
+		<a href="">link2</a>
+		<a href="">link3</a>
+		<a href="">link4</a>
+		<a href="">link5</a>
+	</menu>
+	<p></p>
+	<p>html</p>
+	<p>css</p>
+	<div id="speech-sample">
+		<span>voice-1</span>
+		<span>voice-2</span>
+		<span>voice-3</span>
+		<span>voice-4</span>
+		<span>voice-5</span>
+	</div>
+	<div class="ref">html+css</div>
+</body>
+</html>

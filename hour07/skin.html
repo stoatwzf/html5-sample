@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>set skin</title>
+</head>
+<body>
+	<section id="main">
+		<button id="redBtn" onclick="colorLoad('red')">red</button>
+		<button id="greenBtn" onclick="colorLoad('green')">green</button>
+		<button id="blueBtn" onclick="colorLoad('blue')">blue</button>
+	</section>
+	<script>
+		var a = '#ccc';
+
+		window.onload = function (){
+			colorLoad(localStorage.color);
+		}
+
+		function colorLoad(b){
+			var c = localStorage.color = b;
+
+			document.body.style.backgroundColor = c || a;
+		}
+	</script>
+</body>
+</html>

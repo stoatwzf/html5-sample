@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>track storage</title>
+</head>
+<body>
+	<div id="content">
+		<h1>localStorage</h1>
+		<div id="form">
+			<form action="" id="travelForm">
+				<table class="form">
+					<tr>
+						<td class="label">Traveler</td>
+						<td><input type="text" name="traveler"></td>
+					</tr>
+					<tr>
+						<td class="label">Destination</td>
+						<td><input type="text" name="destination"></td>
+					</tr>
+					<tr>
+						<td class="label">Transporation</td>
+						<td><input type="text" name="transporation"></td>
+					</tr>
+					<tr>
+						<td colspan="2" class="button">
+							<input type="button" id="formSubmit" value="Clear" onclick="javascript:dbClear()">
+							<input type="button" id="formSubmit" value="Go" onclick="javascript:dbGo()">
+						</td>
+					</tr>
+				</table>
+				<input type="hidden" id="inputAction" name="action" value="add">
+				<input type="hidden" id="inputKey" name="key" value="0">
+			</form>
+		</div>
+		<div id="results"></div>
+	</div>
+	<script>
+		var t = new bwTable(),
+			db = getLocalStorage() || dispError('Local Storage not supported.');
+
+		function getLocalStorage(){
+			try {
+				if (!!window.localStorage){
+					return window.localStorage;
+				}
+			} catch (e){
+				return undefined;
+			}
+		}
+		function dispResults(){
+			if (errorMessage){
+				element('results').innerHTML = errorMessage;
+				return;
+			}
+			var t = new bwTable();
+
+			t.addRow(['traveler', db.getItem('traveler')]);
+			t.addRow(['destination', db.getItem('destination')]);
+			t.addRow(['transporation', db.getItem('transporation')]);
+			element('results').innerHTML = t.getTableHTML();
+		}
+		function dbGo(){
+			if (errorMessage){
+				return;
+			}
+
+			var f = element('travelForm');
+
+			db.setItem('traveler', f.elements['traveler'].value);
+			db.setItem('destination', f.elements['destination'].value);
+			db.setItem('transporation', f.elements['transporation'].value);
+			dispResults();
+		}
+		function dbClear(){
+			if (errorMessage){
+				return;
+			}
+			db.clear();
+			dispResults();
+		}
+		function initDisp(){
+			dispResults();
+		}
+		window.onload = initDisp;
+	</script>
+</body>
+</html>

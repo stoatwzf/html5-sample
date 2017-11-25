@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>web storage and web SQL</title>
+</head>
+<body>
+	<h1>Guestbook</h1>
+	<textarea name="" id="memo" cols="60" rows="10"></textarea><br>
+	<input type="button" value="add" onclick="saveStorage('memo')">
+	<input type="button" value="reset" onclick="clearStorage('msg')">
+	<hr>
+	<p id="msg"></p>
+	<script>
+		function saveStorage(id){
+			var data = document.getElementById(id).value,
+				time = new Date().getTime();
+
+			localStorage.setItem(time, data);
+			console.log('data saved.');
+			loadStorage('msg');
+		}
+		function loadStorage(id){
+			var result = '<table border="1" width="100%">';
+
+			for (var i = 0; i < localStorage.length; i += 1){
+				var key = localStorage.key(i),
+					value = localStorage.getItem(key),
+					date = new Date();
+
+				date.setTime(key);
+
+				var datestr = date.toGMTString();
+
+				result += '<tr><td>' + value + '</td><td>' + datestr + '</td></tr>';
+			}
+			result += '</table>';
+
+			var target = document.getElementById(id);
+
+			target.innerHTML = result;
+		}
+		function clearStorage(){
+			localStorage.clear();
+			console.log('all data cleared.');
+			loadStorage('msg');
+		}
+	</script>
+</body>
+</html>

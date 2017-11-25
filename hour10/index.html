@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>web gelocation</title>
+</head>
+<body>
+	<div id="map" style="width:400px;height:400px"></div>
+	<script>
+		get_location();
+		function get_location(){
+			if (navigator.geolocation){
+				navigator.geolocation.getCurrentPosition(show_map, handler_error, {
+					enableHighAccuracy: true,
+					maximumAge: 1000
+				});
+			} else {
+				console.log('This browser not support h5 geolocation.');
+			}
+		}
+		function handler_error(err){
+			switch (err.code){
+				case 1:
+					console.log('location server refused.');
+					break;
+				case 2:
+					console.log('failed get location.');
+					break;
+				case 3:
+					console.log('timeout.');
+					break;
+				default:
+					console.log('error');
+					break;
+			}
+		}
+		function show_map(position){
+			var latitude = position.coords.latitude;
+			var longitude = position.coords.longitude;
+
+			showObject(position, 0);
+		}
+		function showObject(obj, k){
+			if (!obj){
+				return;
+			}
+			for (var i in obj){
+				if (typeof obj[i] !== 'object' || obj[i] === null){
+					for (var j = 0; j < k; j += 1){
+						document.write('&nbsp;');
+					}
+					document.write(i + ':' + obj[i] + '<br>');
+				} else {
+					document.write(i + ':' + '<br>');
+					showObject(obj[i], k + 1);
+				}
+			}
+		}
+	</script>
+</body>
+</html>

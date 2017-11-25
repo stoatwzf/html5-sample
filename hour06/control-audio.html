@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>control audio</title>
+	<style>
+		body {
+			background: url(public/lan.jpg) no-repeat;
+		}
+		#toggle {
+			position: absolute;
+			left: 311px;
+			top: 293px;
+		}
+	</style>
+</head>
+<body>
+	<audio id="music">
+		<source src="public/audio.mp3">
+		不支持audio元素
+	</audio>
+	<button id="toggle" onclick="toggleSound()">play</button>
+	<script>
+		function toggleSound(){
+			var m = document.getElementById('music'),
+				t = document.getElementById('toggle');
+
+			if (m.paused){
+				m.play();
+				t.innerHTML = 'pause';
+			} else {
+				m.pause();
+				t.innerHTML = 'play';
+			}
+		}
+	</script>
+</body>
+</html>

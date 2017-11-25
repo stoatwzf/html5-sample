@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>offline editor</title>
+</head>
+<body>
+	<input type="button" value="New Note" onclick="newNote()">
+	<ul id="list"></ul>
+	<script>
+		function newNote(){
+			var title = window.prompt('New Note');
+
+			if (title){
+				add(title);
+			}
+		}
+		function add(title){
+			addUIItem(title);
+			addDataItem(title);
+		}
+		function remove(title){
+			removeUIItem(title);
+			removeDataItem(title);
+		}
+		function addUIItem(title){
+			var item = document.createElement('li');
+
+			item.setAttribute('ondblclick', 'remove("title")');
+			item.innerHTML = title;
+
+			var list = document.getElementById('list');
+
+			list.appendChild(item);
+		}
+		function removeUIItem(title){
+			var list = document.getElementById('list');
+
+			for (var i = 0; i < list.children.length; i += 1){
+				if (list.children[i].innerHTML === title){
+					list.removeChild(list.children[i]);
+				}
+			}
+		}
+	</script>
+</body>
+</html>

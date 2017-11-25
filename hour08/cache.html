@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" manifest="cacheData.manifest">
+<head>
+	<meta charset="UTF-8">
+	<title>cahce manifest</title>
+</head>
+<body>
+	
+	<script>
+		if (!window.applicationCache){
+			console.log('This browser not support applicationCache.');
+		}
+		var appCache = window.applicationCache;
+
+		switch (appCache.status){
+			case appCache.UNCACHED:
+				console.log('uncached');
+				break;
+			case appCache.IDLE:
+				console.log('idle');
+				break;
+			case appCache.CHECKING:
+				console.log('checking');
+				break;
+			case appCache.DOWNLOADING:
+				console.log('downloading');
+				break;
+			case appCache.UPDATEREADY:
+				console.log('updateready');
+				break;
+			case appCache.OBSOLETE:
+				console.log('obsolete');
+				break;
+			default:
+				console.log('unkown cache status');
+				break;
+		}
+		appCache.update();
+		if (appCache.status === window.applicationCache.UPDATEREADY){
+			appCache.swapCache();
+		}
+		appCache.addEventListener('error', function (e){
+			console.log('Error: Cache failed to update.');
+		}, false);
+	</script>
+</body>
+</html>

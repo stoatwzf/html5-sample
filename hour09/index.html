@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>web workers</title>
+</head>
+<body>
+	<p id="support">This browser not support web workers.</p>
+	<button id="stopButton">stop</button>
+	<button id="helloButton">send</button>
+	<script>
+		function stopWorker(){
+			worker.terminate();
+		}
+		function messageHandler(e){
+			console.log(e.data);
+		}
+		function errorHandler(e){
+			console.log(e.message, e);
+		}
+		function loadDemo(){
+			if (typeof Worker !== 'undefined'){
+				document.getElementById('support').innerHTML = 'This browser support web worker.';
+				worker = new Worker('worker.js');
+				worker.addEventListener('message', messageHandler, true);
+				worker.addEventListener('error', errorHandler, true);
+				document.getElementById('helloButton').onclick = function (){
+					worker.postMessage('ok');
+				}
+				document.getElementById('stopButton').onclick = stopWorker;
+			}
+		}
+		window.addEventListener('load', loadDemo, true);
+	</script>
+</body>
+</html>

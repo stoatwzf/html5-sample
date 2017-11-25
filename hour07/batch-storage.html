@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>batch web SQL storage</title>
+</head>
+<body>
+	<table id="racers" cellspacing="0" style="width:100%; text-align: center; border: 1px solid #ccc;">
+		<th>Id</th>
+		<th>Name</th>
+	</table>
+	<script>
+		var db = openDatabase('db', '1.0', 'my first database', 2 * 1024 * 1024);
+
+		initDatabase();
+		function log(id, name){
+			var row = document.createElement('tr'),
+				idCell = document.createElement('td'),
+				nameCell = document.createElement('td');
+
+			idCell.textContent = id;
+			nameCell.textContent = name;
+			row.appendChild(idCell);
+			row.appendChild(nameCell);
+			document.getElementById('racers').appendChild(row);
+		}
+		function doQuery(){
+			db.transaction(function (tx){
+				tx.executeSql('SELECT * from mytable', [], function (tx, result){
+					for (var i = 0; i < result.rows.length; i += 1){
+						var item = result.rows.item(i);
+
+						log(item.id, item.name);
+					}
+				});
+			});
+		}
+		function initDatabase(){
+			var names = ['stoat1', 'stoat2', 'stoat3', 'stoat4', 'stoat5'];
+
+			db.transaction(function (tx){
+				tx.executeSql('CREATE TABLE IF NOT EXISTS mytable(id integer primary key autoincrement, name)');
+				for (var i = 0; i < names.length; i += 1){
+					tx.executeSql('INSERT INTO mytable (name) VALUES (?)', [names[i]]);
+				}
+				doQuery();
+			});
+		}
+	</script>
+</body>
+</html>

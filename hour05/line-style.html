@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>line style</title>
+</head>
+<body>
+	<canvas id="canvas" width="700" height="1000" style="border:1px solid #ccc"></canvas>
+	<script>
+		window.onload = function (){
+			var d = document.getElementById('canvas').getContext('2d'),
+				c = ['butt', 'round', 'square'],
+				j = ['round', 'bevel', 'miter'];
+
+			d.strokeStyle = 'red';
+			for (var i = 1; i < 12; i += 1){
+				d.lineWidth = 1 + i;
+				d.lineCap = c[parseInt((Math.random() / 3) * 10)];
+				d.beginPath();
+				d.moveTo(5, 5 + i * 14);
+				d.lineTo(140, 5 + i * 14);
+				d.stroke();
+			}
+			d.strokeStyle = 'blue';
+			for (var x = 0; x < j.length; x += 1){
+				d.lineWidth = 25;
+				d.lineJoin = j[x];
+				d.beginPath();
+				d.moveTo(10 + (x + 1) * 150, 30);
+				d.lineTo(100 + (x + 1) * 150, 30);
+				d.lineTo(100 + (x + 1) * 150, 100);
+				d.stroke();
+			}
+			d.strokeStyle = 'black';
+			d.lineWidth = 10;
+			d.lineJoin = 'miter';
+			for (var y = 1; y < 10; y += 1){
+				d.miterLimit = y * 10;
+				d.beginPath();
+				d.moveTo(10, y * 30 + 150);
+				d.lineTo(100, y * 30 + 150);
+				d.lineTo(10, y * 33 + 150);
+				d.stroke();
+			}
+		}
+	</script>
+</body>
+</html>

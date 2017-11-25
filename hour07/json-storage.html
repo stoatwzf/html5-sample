@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Json storage</title>
+</head>
+<body>
+	<h1>simulation database</h1>
+	<table>
+		<tr>
+			<td>name:</td>
+			<td><input type="text" id="name"></td>
+		</tr>
+		<tr>
+			<td>email:</td>
+			<td><input type="text" id="email"></td>
+		</tr>
+		<tr>
+			<td>tel:</td>
+			<td><input type="text" id="tel"></td>
+		</tr>
+		<tr>
+			<td>memo:</td>
+			<td><input type="text" id="memo"></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="button" value="save" onclick="saveStorage()"></td>
+		</tr>
+	</table>
+	<hr>
+	<p>
+		<label for="">search:</label>
+		<input type="text" id="find">
+		<input type="button" value="find" onclick="findStorage('msg')">
+	</p>
+	<p id="msg"></p>
+	<script>
+		function saveStorage(){
+			var data = new Object;
+
+			data.name = document.getElementById('name').value;
+			data.email = document.getElementById('email').value;
+			data.tel = document.getElementById('tel').value;
+			data.memo = document.getElementById('memo').value;
+
+			var str = JSON.stringify(data);
+
+			localStorage.setItem(data.name, str);
+			console.log('data saved.');
+		}
+		function findStorage(id){
+			var find = document.getElementById('find').value,
+				str = localStorage.getItem(find),
+				data = JSON.parse(str),
+				target = document.getElementById(id),
+				result = 'name:' + data.name + '<br>';
+
+			result += 'email:' + data.email + '<br>';
+			result += 'tel:' + data.tel + '<br>';
+			result += 'memo:' + data.memo + '<br>';
+			target.innerHTML = result;
+		}
+	</script>
+</body>
+</html>

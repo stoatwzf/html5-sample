@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>form</title>
+	<style>
+		html, body, h1, form, fieldset, legend, ol, li {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			background: #fff;
+			color: #111;
+			font-family: Georgia, 'Times New Roman', Times, serif;
+			padding: 20px;
+		}
+		form#payment {
+			background: #9cbc2c;
+			border-radius: 5px;
+			padding: 20px;
+			width: 400px;
+		}
+		form#payment fieldset {
+			border: none;
+			margin-bottom: 10px;
+		}
+		form#payment fieldset:last-of-type {
+			margin-bottom: 0;
+		}
+		form#payment legend {
+			color: #384313;
+			font-size: 16px;
+			font-weight: bold;
+			padding-bottom: 10px;
+			text-shadow: 0 1px 1px #c0d576;
+		}
+		form#payment<fieldset>legend:before {
+			content: 'Step" counter(fieldsets)":',
+			counter-increment: fieldsets;
+		}
+		form#payment fieldset fieldset legend {
+			color: #111;
+			font-size: 13px;
+			font-weight: normal;
+			padding-bottom: 0;
+		}
+		form#payment ol li {
+			background: #b9cf6a;
+			background: rgba(255, 255, 255, .3);
+			border-color: #e3ebc3;
+			border-color: rgba(255, 255, 255, .6);
+			border-style: solid;
+			border-width: 2px;
+			border-radius: 5px;
+			line-height: 30px;
+			list-style: none;
+			padding: 5px 10px;
+			margin-bottom: 2px;
+		}
+		form#payment ol ol li {
+			background: none;
+			border: none;
+			float: left;
+		}
+		form#payment label {
+			float: left;
+			font-size: 13px;
+			width: 110px;
+		}
+		form#payment fieldset fieldset label {
+			background: none no-repeat left 50%;
+			line-height: 20px;
+			padding: 0 0 0 30px;
+			width: auto;
+		}
+		form#payment fieldset fieldset label:hover {
+			cursor: pointer;
+		}
+		form#payment input:not([type=radio]), form#payment textarea {
+			background: #fff;
+			border: #FC3 solid 1px;
+			border-radius: 3px;
+			font: italic 13px Georgia, 'Times New Roman', Times, serif;
+			outline: none;
+			padding: 5px;
+			width: 200px;
+		}
+		form#payment input:not([type=submit]):focus, form#payment textarea:focus {
+			background: #eaeaea;
+			border: #F00 solid 1px;
+		}
+		form#payment input[type=radio]{
+			float: left;
+			margin-right: 5px;
+		}
+	</style>
+</head>
+<body>
+	<form action="" id="payment">
+		<fieldset>
+			<legend>User Data</legend>
+			<ol>
+				<li>
+					<label for="name">Name:</label>
+					<input type="text" id="name" name="name" placeholder="name">
+				</li>
+				<li>
+					<label for="email">Email:</label>
+					<input type="email" id="email" name="email" placeholder="email">
+				</li>
+				<li>
+					<label for="phone">Phone:</label>
+					<input type="tel" id="phone" name="phone" placeholder="phone">
+				</li>
+			</ol>
+		</fieldset>
+		<fieldset>
+			<legend>Home Address</legend>
+			<ol>
+				<li>
+					<label for="address">Info Address</label>
+					<textarea name="address" id="address" cols="30" rows="1"></textarea>
+				</li>
+				<li>
+					<label for="postcode">Postal Code</label>
+					<input type="text" id="postcode" name="postcode">
+				</li>
+				<li>
+					<label for="country">Country</label>
+					<input type="text" id="country" name="country">
+				</li>
+			</ol>
+		</fieldset>
+		<fieldset>
+			<legend>Pay Way</legend>
+			<ol>
+				<li>
+					<fieldset>
+						<legend>Card Type</legend>
+						<ol>
+							<li>
+								<input type="radio" id="visa" name="cardtype">
+								<label for="visa">China Industry Bank</label>
+							</li>
+							<li>
+								<input type="radio" id="visa" name="cardtype">
+								<label for="visa">China Industry Bank</label>
+							</li>
+							<li>
+								<input type="radio" id="visa" name="cardtype">
+								<label for="visa">China Industry Bank</label>
+							</li>
+						</ol>
+					</fieldset>
+				</li>
+				<li>
+					<label for="cardnumber">Card Numer</label>
+					<input type="number" id="cardnumber" name="cardnumber">
+				</li>
+				<li>
+					<label for="secure">Validate Code</label>
+					<input type="number" id="secure" name="secure">
+				</li>
+				<li>
+					<label for="namecard">Card User</label>
+					<input type="cardname" id="namecard" name="cardname" placeholder="cardname">
+				</li>
+			</ol>
+		</fieldset>
+		<fieldset>
+			<button type="submit">Buy Now</button>
+		</fieldset>
+	</form>
+</body>
+</html>

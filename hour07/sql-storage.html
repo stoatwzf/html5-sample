@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>SQL storage</title>
+</head>
+<body>
+	<h1>web SQL Guestbook</h1>
+	<table>
+		<tr>
+			<td>name:</td>
+			<td><input type="text" id="name"></td>
+		</tr>
+		<tr>
+			<td>memo:</td>
+			<td><input type="text" id="memo"></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="button" value="save" onclick="saveData()"></td>
+		</tr>
+	</table>
+	<hr>
+	<table id="datatable" border="1"></table>
+	<p id="msg"></p>
+	<script>
+		var datatable = null,
+			db = openDatabase('MyData','','My Database', 102400);
+
+		window.onload = init();
+		function init(){
+			datatable = document.getElementById('datatable');
+			showAllData();
+		}
+		function removeAllData(){
+			for (var i = datatable.childNodes.length - 1; i >= 0; i -= 1){
+				datatable.removeChild(datatable.childNodes[i]);
+			}
+
+			var tr = document.createElement('tr'),
+				th1 = document.createElement('th'),
+				th2 = document.createElement('th'),
+				th3 = document.createElement('th');
+
+			th1.innerHTML = 'name';
+			th2.innerHTML = 'memo';
+			th3.innerHTML = 'time';
+			tr.appendChild(th1);
+			tr.appendChild(th2);
+			tr.appendChild(th3);
+			datatable.appendChild(tr);
+		}
+		function showData(row){
+			var tr = document.createElement('tr'),
+				td1 = document.createElement('td'),
+				td2 = document.createElement('td'),
+				td3 = document.createElement('td'),
+				t = new Date();
+
+			td1.innerHTML = row.name;
+			td2.innerHTML = row.message;
+			td3.innerHTML = t.toLocaleDateString() + ' ' + t.toLocaleTimeString();
+			tr.appendChild(td1);
+			tr.appendChild(td2);
+			tr.appendChild(td3);
+			datatable.appendChild(tr);
+		}
+		function showAllData(){
+			db.transaction(function (tx){
+				tx.executeSql('CREATE TABLE IF NOT EXISTS MsgData(name TEXT,message TEXT,time INTEGER)', []);
+				tx.executeSql('SELECT * FROM MsgData', [], function (tx , rs){
+					removeAllData();
+					for (var i = 0; i < rs.rows.length; i += 1){
+						showData(rs.rows.item(i));
+					}
+				});
+			});
+		}
+		function addData(name, message, time){
+			db.transaction(function (tx){
+				tx.executeSql('INSERT INTO MsgData VALUES (?,?,?)', [name, message, time], function (tx, rs){
+					console.log('success saved.')
+				}, function (tx, error){
+					console.log(error.source + '::' + error.message);
+				});
+			});
+		}
+		function saveData(){
+			var name = document.getElementById('name').value,
+				memo = document.getElementById('memo').value,
+				time = new Date().getTime();
+
+			addData(name, memo, time);
+			showAllData();
+		}
+	</script>
+</body>
+</html>

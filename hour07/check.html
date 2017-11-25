@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>web storage</title>
+</head>
+<body>
+	<a href="storage.html" target="_blank">storage</a>
+	<script>
+		window.localStorage.name = 'stoat';
+		window.sessionStorage.setItem('age', 22);
+		window.onload = checkStorageSupport;
+		function checkStorageSupport(){
+			if (window.sessionStorage){
+				console.log('This browser supports sessionStorage.');
+			} else {
+				console.log('This browser not supports sessionStorage.');
+			}
+			if (window.localStorage){
+				console.log('This browser supports localStorage.');
+			} else {
+				console.log('This browser not supports localStorage.');
+			}
+		}
+		window.addEventListener('storage', function (e){
+			console.log('key:' + e.key + ',newValue:' + e.newValue + ',oldValue:' + e.oldValue + ',url:' + e.url + ',storageArea:' + e.storageArea);
+		}, true);
+	</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>rotate</title>
+</head>
+<body>
+	<canvas id="canvas" width="700" height="300" style="border:1px solid #ccc"></canvas>
+	<script>
+		window.onload = draw;
+		function draw(){
+			var d = document.getElementById('canvas').getContext('2d');
+
+			d.translate(150, 150);
+			for (var i = 1; i < 9; i += 1){
+				d.save();
+				d.rotate(Math.PI * (2/4 + i / 4));
+				d.translate(0, -100);
+				drawTop(d, 'rgb(' + 30 * i + ',' + (255 - 30 * i) + ',255');
+				drawGrip(d);
+				d.restore();
+			}
+		}
+		function drawTop(d, f){
+			d.fillStyle = f;
+			d.beginPath();
+			d.arc(0, 0, 30, 0, Math.PI, true);
+			d.fill();
+		}
+		function drawGrip(d){			
+			d.fillStyle = 'blue';
+			d.fillRect(-1.5, 0, 1.5, 40);
+			d.beginPath();
+			d.strokeStyle = 'blue';
+			d.arc(-5, 40, 4, Math.PI, Math.PI * 2, true);
+			d.stroke();
+		}
+	</script>
+</body>
+</html>

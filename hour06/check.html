@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>check</title>
+</head>
+<body>
+	<script>
+		window.onload = function (){
+			var m = document.createElement('audio');
+
+			if (m.canPlayType){
+				if (m.canPlayType('audio/mpeg') !== ''){
+					document.write('支持mp3编码<br>');
+				}
+				if (m.canPlayType('audio/ogg;codecs="vorbis"') !== ''){
+					document.write('支持ogg编码<br>');
+				}
+				if (m.canPlayType('audio/mp4;codecs="mp4a.40.5"') !== ''){
+					document.write('支持acc编码<br>');
+				}
+			} else {
+				document.write('不支持音频编码.');
+			}
+
+			var v = document.createElement('video');
+
+			if (v.canPlayType){
+				if (v.canPlayType('video/mp4;codecs="avc1.64001E"') !== ''){
+					document.write('支持h264编码<br>');
+				}
+				if (v.canPlayType('video/ogg;codecs="vp8"') !== ''){
+					document.write('支持vp8编码<br>');
+				}
+				if (v.canPlayType('video/ogg;codecs="theora"') !== ''){
+					document.write('支持theora编码');
+				}
+			} else {
+				document.write('不支持视频编码.');
+			}
+		}
+	</script>
+</body>
+</html>

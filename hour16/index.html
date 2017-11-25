@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>transition</title>
+	<style>
+		.tran {
+			margin: 0 auto;
+			width: 500px;
+			height: 500px;
+			background: url(../hour11/public/bg.jpg) center no-repeat;
+			transform-style: preserve-3d;
+			animation-name: x-spin;
+			animation-duration: 20s;
+			animation-iteration-count: infinite;
+			animation-timing-function: linear;
+		}
+		@keyframes x-spin {
+			0% {
+				transform: rotateX(0deg);
+			}
+			50% {
+				transform: rotateX(180deg);
+			}
+			100% {
+				transform: rotateX(360deg);
+			}
+		}
+		.gra {
+			width: 400px;
+			height: 400px;
+			background: linear-gradient(top left, yellow, blue);
+		}
+	</style>
+</head>
+<body>
+	<div class="tran"></div>
+	<div class="gra"></div>
+</body>
+</html>

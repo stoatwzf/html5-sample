@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" manifest="offline.manifest">
+<head>
+	<meta charset="UTF-8">
+	<title>offline</title>
+</head>
+<body>
+	<script>
+		window.addEventListener('online', function (e){
+			log('online');
+		}, true);
+		window.addEventListener('offline', function (e){
+			log('offline');
+		}, true);
+
+		var cache = window.applicationCache;
+
+		cache.addEventListener('cached', function (){
+			console.log('Cached,status:' + cache.status);
+		}, true);
+		cache.addEventListener('checking', function (){
+			console.log('Checking,status:' + cache.status);
+		}, true);
+		cache.addEventListener('downloading', function (){
+			console.log('Downloading,status:' + cache.status);
+		}, true);
+		cache.addEventListener('error', function (){
+			console.log('Error,status:' + cache.status);
+		}, true);
+		cache.addEventListner('noupdate', function (){
+			console.log('Noupdate,status:' + cache.status);
+		}, true);
+		cache.addEventListener('updateready', function (){
+			console.log('Updateready,status:' + cache.status);
+		}, true);
+	</script>
+</body>
+</html>
